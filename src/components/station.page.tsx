@@ -1,11 +1,13 @@
 import { Observation } from '@/api/customObservations';
 import { Station } from '@/api/stations';
 import { LatLngTuple } from 'leaflet';
+import { useTranslations } from 'next-intl';
 
 import ButtonCenterView from './button-center-view';
 import ButtonClose from './button-close';
 import { StationContributionList } from './station-contribution-list';
 import { StationContributionTypesList } from './station-contribution-types-list';
+import LinkAsButton from './ui/link-as-button';
 
 type Props = {
   content: Station;
@@ -14,7 +16,7 @@ type Props = {
 
 export default function StationPageUI({ content, observationTypes }: Props) {
   const observations = content.observations ?? [];
-
+  const t = useTranslations('details');
   return (
     <article>
       <header>
@@ -35,6 +37,15 @@ export default function StationPageUI({ content, observationTypes }: Props) {
         {content.description.split('\n').map(e => (
           <p>{e}</p>
         ))}
+        {content?.url && (
+          <LinkAsButton
+            target="_blank"
+            className="mx-auto mt-4 block w-fit"
+            href={content?.url}
+          >
+            {t('link')}
+          </LinkAsButton>
+        )}
       </div>
       <StationContributionTypesList
         ids={content.customContributionTypes || []}

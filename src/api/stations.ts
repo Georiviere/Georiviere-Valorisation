@@ -13,6 +13,7 @@ export type Station = {
   description: string;
   customContributionTypes: number[];
   observations?: StationObservations | null;
+  url?: string;
   geometry: {
     type: string;
     coordinates: number[];
