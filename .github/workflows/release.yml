@@ -30,7 +30,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/georiviere-public-builder
 
       - name: Build and push Docker image builder
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./.docker/Dockerfile
