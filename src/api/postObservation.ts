@@ -6,7 +6,10 @@ async function postObservation(
   const body = new FormData();
 
   Object.entries(props).forEach(([key, value]) => {
-    body.append(key, value);
+    // `null` in formData is converted to `'null'`
+    // We convert them to an empty string to avoid it
+    const nextValue = value !== null ? value : '';
+    body.append(key, nextValue);
   });
 
   Array.from({ length: 5 }).forEach((_, index) => {
