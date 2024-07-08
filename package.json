@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@20tab/react-leaflet-resetview": "^1.1.0",
-    "@bhch/react-json-form": "^2.13.5",
+    "@bhch/react-json-form": "^2.14.1",
     "@hookform/resolvers": "^3.1.0",
     "@radix-ui/react-accordion": "^1.1.1",
     "@radix-ui/react-dialog": "^1.0.4",
