@@ -91,7 +91,7 @@ async function homepageLocaleSettingsAdapter(
             href: '/map/observation/landscape',
             images: [
               {
-                thumbnail: '/medias/placeholder3.jpg',
+                thumbnail: '/medias/placeholder4.jpg',
               },
             ],
           },
