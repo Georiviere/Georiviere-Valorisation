@@ -36,6 +36,7 @@ export function ObservationCTA() {
               <ul className="m-auto grid grid-cols-2 gap-2 p-6 md:w-[400px]">
                 {observations?.map(observation => (
                   <ListItem
+                    key={observation.id}
                     href={`/map/observation/${
                       observation.id
                     }?${params.toString()}`}
@@ -47,6 +48,7 @@ export function ObservationCTA() {
                 {observations?.length === 0 &&
                   DEFAULT_OBSERVATION_TYPES.map(observation => (
                     <ListItem
+                      key={observation}
                       href={`/map/observation/${observation}?${params.toString()}`}
                       title={t(`${observation}.label`)}
                     >

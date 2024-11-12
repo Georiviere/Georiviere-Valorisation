@@ -32,8 +32,11 @@ export default function MapFilters() {
     return (
       <div className="bg-background px-3">
         <p className="sr-only">{t('site.loading')}</p>
-        {Array.from({ length: 4 }, () => (
-          <div className="flex w-full justify-between border-b py-4 last:border-b-0">
+        {Array.from({ length: 4 }, (_, index) => (
+          <div
+            key={index}
+            className="flex w-full justify-between border-b py-4 last:border-b-0"
+          >
             <div className="skeleton-animation h-6 w-32 rounded"></div>
             <div className="skeleton-animation h-6 w-12 rounded-xl"></div>
           </div>
