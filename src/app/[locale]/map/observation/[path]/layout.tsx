@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { DEFAULT_OBSERVATION_TYPES } from '@/constants';
 import { getTranslations } from 'next-intl/server';
 
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -16,15 +17,17 @@ export const generateMetadata = async ({
 }: generateMetadataProps) => {
   const t = await getTranslations('observation');
 
-  return {
-    title: `${t('title')} ${t(`${path}.label`)}`,
-  };
+  if (DEFAULT_OBSERVATION_TYPES.includes(path)) {
+    return {
+      title: `${t('title')} ${t(`${path}.label`)}`,
+    };
+  } else {
+    return {
+      title: `${t('title')} ${path}`,
+    };
+  }
 };
 
 export default function ObservationLayout({ children }: Props) {
-  return (
-    <ScrollArea className="h-full">
-      <div className="p-4 lg:p-8">{children}</div>
-    </ScrollArea>
-  );
+  return <ScrollArea className="h-full">{children}</ScrollArea>;
 }

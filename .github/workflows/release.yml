@@ -1,6 +1,10 @@
 name: Release docker image
 
 on:
+  push:
+    branches:
+      - main
+      - new_observation_types
   release:
     types: [created]
 

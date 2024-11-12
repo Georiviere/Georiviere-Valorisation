@@ -12,11 +12,18 @@ export const GeometryTooltip = ({
   properties: GeoJsonProperties;
   layer: Layer;
 }) => {
-  if (properties === null || (!properties.name && !properties.category)) {
+  if (
+    properties === null ||
+    (!properties.name && !properties.category && !properties.label)
+  ) {
     return null;
   }
   if (layer.type === undefined || !layer.url || !properties.id) {
-    return <Tooltip>{properties.name ?? properties.category}</Tooltip>;
+    return (
+      <Tooltip>
+        {properties.name ?? properties.category ?? properties.label}
+      </Tooltip>
+    );
   }
   return (
     <Tooltip
@@ -36,7 +43,7 @@ export const GeometryTooltip = ({
         )}
         <div className="p-4">
           <h3 className="line-clamp-2 text-lg font-bold">
-            {properties.name ?? properties.category}
+            {properties.name ?? properties.category ?? properties.label}
           </h3>
           <MetadataList
             descent={properties.descent}

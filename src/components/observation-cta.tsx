@@ -1,6 +1,10 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import { Observation } from '@/api/customObservations';
+import { DEFAULT_OBSERVATION_TYPES } from '@/constants';
 import { useTranslations } from 'next-intl';
 
 import { cn } from '@/lib/utils';
@@ -14,9 +18,14 @@ import {
 
 import { Icons } from './icons';
 
-export function ObservationCTA() {
+type OversationsCTAProps = {
+  observations: Observation[];
+};
+
+export function ObservationCTA({ observations }: OversationsCTAProps) {
   const t = useTranslations('observation');
   const params = useSearchParams();
+
   return (
     <div className="flex grow justify-center">
       <NavigationMenu delayDuration={500}>
@@ -25,36 +34,27 @@ export function ObservationCTA() {
             <NavigationMenuTrigger>{t('labelButton')}</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="m-auto grid grid-cols-2 gap-2 p-6 md:w-[400px]">
-                <ListItem
-                  href={`/map/observation/damages?${params.toString()}`}
-                  title={t('damages.label')}
-                >
-                  {t('damages.shortDescription')}
-                </ListItem>
-                <ListItem
-                  href={`/map/observation/fauna-flora?${params.toString()}`}
-                  title={t('fauna-flora.label')}
-                >
-                  {t('fauna-flora.shortDescription')}
-                </ListItem>
-                <ListItem
-                  href={`/map/observation/quantity?${params.toString()}`}
-                  title={t('quantity.label')}
-                >
-                  {t('quantity.shortDescription')}
-                </ListItem>
-                <ListItem
-                  href={`/map/observation/quality?${params.toString()}`}
-                  title={t('quality.label')}
-                >
-                  {t('quality.shortDescription')}
-                </ListItem>
-                <ListItem
-                  href={`/map/observation/landscape?${params.toString()}`}
-                  title={t('landscape.label')}
-                >
-                  {t('landscape.shortDescription')}
-                </ListItem>
+                {observations?.map(observation => (
+                  <ListItem
+                    key={observation.id}
+                    href={`/map/observation/${
+                      observation.id
+                    }?${params.toString()}`}
+                    title={observation.label}
+                  >
+                    {observation.description ?? ''}
+                  </ListItem>
+                ))}
+                {observations?.length === 0 &&
+                  DEFAULT_OBSERVATION_TYPES.map(observation => (
+                    <ListItem
+                      key={observation}
+                      href={`/map/observation/${observation}?${params.toString()}`}
+                      title={t(`${observation}.label`)}
+                    >
+                      {t(`${observation}.shortDescription`)}
+                    </ListItem>
+                  ))}
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>

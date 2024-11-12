@@ -9,7 +9,9 @@ type BaseLayers = {
   id: number;
   label: string;
   url: string;
-  attribution: string;
+  control: {
+    attribution: string;
+  };
 }[];
 
 export type RawLayer = {
@@ -156,7 +158,7 @@ export async function fetchSettings(): Promise<RawSettings> {
     const res = await fetch(
       `${process.env.apiHost}/api/portal/fr/portal/${process.env.portal}/`,
       {
-        next: { revalidate: 60 * 60 },
+        next: { revalidate: 5 * 60, tags: ['admin', 'settings'] },
         headers: {
           Accept: 'application/json',
         },

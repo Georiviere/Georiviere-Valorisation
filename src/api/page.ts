@@ -2,7 +2,7 @@ import { Menu, getMenuSettings } from './settings';
 
 async function fetchDetails(url: string) {
   const res = await fetch(`${process.env.apiHost}${url}`, {
-    next: { revalidate: 60 * 60 },
+    next: { revalidate: 5 * 60, tags: ['admin', 'staticpages'] },
     headers: {
       Accept: 'application/json',
     },

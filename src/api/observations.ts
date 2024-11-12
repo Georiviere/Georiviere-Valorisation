@@ -1,8 +1,3 @@
-import {
-  JSONSchema,
-  JSONSchemaType,
-} from 'json-schema-yup-transformer/dist/schema';
-
 import { getCorrespondingPath } from '@/lib/utils';
 
 export type PostObservationProps = {
@@ -15,7 +10,7 @@ async function fetchObservation() {
   const res = await fetch(
     `${process.env.apiHost}/api/portal/fr/${process.env.portal}/contributions/json_schema/`,
     {
-      next: { revalidate: 60 * 60 },
+      next: { revalidate: 5 * 60, tags: ['admin', 'observations'] },
       headers: {
         Accept: 'application/json',
       },
@@ -79,10 +74,10 @@ async function postObservation(props: PostObservationProps) {
   }
 }
 
-function observationAdapter(json: JSONSchema, path: string) {
+function observationAdapter(json: any, path: string) {
   const { category, ...jsonProperties } = json.properties;
-  const { then: type } = json.allOf.find(
-    (item: JSONSchemaType) =>
+  const { then: type } = json.allOf?.find(
+    (item: any) =>
       item.if.properties.category?.const === getCorrespondingPath(path),
   );
   return {
@@ -103,7 +98,7 @@ function observationAdapter(json: JSONSchema, path: string) {
       ...jsonProperties,
       ...type.properties,
     },
-    required: [...json.required, 'lng', 'lat'].filter(
+    required: [...(json.required ?? []), 'lng', 'lat'].filter(
       item => item !== 'category',
     ),
   };

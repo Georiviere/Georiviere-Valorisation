@@ -77,7 +77,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 }
 
@@ -98,7 +98,7 @@ body .leaflet-container a.leaflet-popup-close-button {
   display: none;
 }
 
-.tns-horizontal.tns-subpixel>.tns-item {
+.tns-horizontal.tns-subpixel > .tns-item {
   vertical-align: middle !important;
 }
 
@@ -133,9 +133,13 @@ just hide all tooltips that aren't the last one
   display: none;
 }
 
-
 .skeleton-animation {
-  background: linear-gradient(90deg, hsl(var(--muted-foreground)) 0%, hsl(var(--foreground)) 50%, hsl(var(--muted-foreground)) 100%);
+  background: linear-gradient(
+    90deg,
+    hsl(var(--muted-foreground)) 0%,
+    hsl(var(--foreground)) 50%,
+    hsl(var(--muted-foreground)) 100%
+  );
   background-size: 300% 100%;
   opacity: 0.2;
   animation: skeletonator 4s ease infinite;
@@ -233,4 +237,74 @@ just hide all tooltips that aren't the last one
 .is-WYSIWYG .align-right figcaption,
 .is-WYSIWYG .image figcaption {
   @apply text-sm mt-1 text-center;
+}
+
+/* JSON React Form */
+
+.rjf-input-group > input,
+.rjf-input-group > textarea,
+.rjf-input-group > select {
+  background-color: hsl(var(--input));
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-radius: calc(var(--radius) - 2px);
+  margin-top: 0.25rem;
+}
+.rjf-input-group > input::file-selector-button {
+  background: transparent;
+  border-width: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.rjf-input-group {
+  display: flex;
+  flex-direction: column;
+}
+.rjf-form-row label {
+  line-height: 1;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: hsl(var(--foreground));
+}
+.rjf-form-row {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.rjf-help-text {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-top: 0.25rem;
+}
+.rjf-required::after {
+  content: '*';
+  margin-left: 0.25em;
+}
+
+.rjf-check-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.rjf-radio-option {
+  font-weight: 400 !important;
+  font-size: 1rem !important;
+}
+
+.rjf-radio-option:not(:last-of-type) {
+  margin-bottom: 0.25rem;
+}
+
+.rjf-check-input > label:first-child {
+  margin-bottom: 0.75rem;
+}
+
+.rjf-error-text {
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-top: 0.25rem;
+  color: hsl(var(--destructive));
 }

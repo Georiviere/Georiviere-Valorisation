@@ -7,7 +7,10 @@
     "km": "km",
     "kilometers": "kilomètres",
     "m": "m",
-    "meters": "mètres"
+    "meters": "mètres",
+    "observationTypes": "Types d'observations",
+    "observations": "Observations",
+    "link": "Voir le site associé"
   },
   "home": {
     "title": "Sentinelle des rivières : j'observe, je protège",
@@ -25,8 +28,15 @@
     "coordinatesHelptext": "Indiquez la position de l'observation sur la carte",
     "submit": "Soumettre votre observation",
     "title": "Observation",
+    "password": "Mot de passe",
+    "contributedAt": "Observé le",
+    "station": "Station",
     "labelButton": "Ajouter une observation",
     "photoLabel": "Photo",
+    "lng": "Longitude",
+    "lat": "Latitude",
+    "date": "Date de l'observation",
+    "time": "Heure de l'observation",
     "quality": {
       "label": "Qualité",
       "description": "Apportez des observations sur les propriétés des cours d'eau (pollution, température, développement algal, etc.)",

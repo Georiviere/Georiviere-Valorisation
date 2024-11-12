@@ -23,7 +23,7 @@ async function fetchPois({ params }: FetchPoisProps = {}): Promise<Poi[]> {
     headers: {
       Accept: 'application/json',
     },
-    next: { revalidate: 60 * 60 },
+    next: { revalidate: 5 * 60, tags: ['admin', 'pois'] },
   });
   if (res.status < 200 || res.status > 299) {
     return [];

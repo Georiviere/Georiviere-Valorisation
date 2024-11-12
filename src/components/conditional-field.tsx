@@ -24,5 +24,7 @@ export default function ConditionalField(props: Props) {
     };
   }, [props.name, props.properties.type, register, unregister]);
 
-  return <ObservationFormItem {...props} fieldsProps={props.properties} />;
+  return (
+    <ObservationFormItem {...props} fieldsProps={props.properties as any} />
+  );
 }
