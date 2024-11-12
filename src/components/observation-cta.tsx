@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+'use client';
+
+import React from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Observation, getObservations } from '@/api/customObservations';
+import { Observation } from '@/api/customObservations';
 import { DEFAULT_OBSERVATION_TYPES } from '@/constants';
 import { useTranslations } from 'next-intl';
 
@@ -16,15 +18,13 @@ import {
 
 import { Icons } from './icons';
 
-export function ObservationCTA() {
+type OversationsCTAProps = {
+  observations: Observation[];
+};
+
+export function ObservationCTA({ observations }: OversationsCTAProps) {
   const t = useTranslations('observation');
   const params = useSearchParams();
-
-  const [observations, setObservations] = useState<Observation[]>([]);
-
-  useEffect(() => {
-    getObservations().then(res => setObservations(res));
-  }, []);
 
   return (
     <div className="flex grow justify-center">

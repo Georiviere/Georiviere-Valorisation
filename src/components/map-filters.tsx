@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback } from 'react';
 import { useMapContext } from '@/context/map';
 import { useTranslations } from 'next-intl';
